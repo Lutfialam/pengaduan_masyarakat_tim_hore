@@ -12,6 +12,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Masyarakat');
     }
+
+    public function petugas()
+    {
+        return $this->belongsTo('App\Petugas');
+    }
+
+    
     use Notifiable;
 
     /**
@@ -20,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'level'
     ];
 
     /**

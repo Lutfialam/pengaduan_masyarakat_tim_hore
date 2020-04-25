@@ -1,11 +1,47 @@
-/*================================================================================
-	Item Name: Robust - Responsive Admin Theme
-	Version: 1.0
-	Author: PIXINVENT
-	Author URL: http://www.themeforest.net/user/pixinvent
-================================================================================
+.row-margin-up {
+	margin-top: 80px;
+}
 
-NOTE:
-------
-PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
-WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.ml-6 {
+    margin-left: 80px;
+}
+
+.ui-background {
+	background-image: url(../app-assets/images/login-euy-dekstop.png);
+	background-size: cover;
+}
+
+@media (min-width: 992px) {
+    .background-login {
+        background-image: url(../bg-euy.png);
+        background-size: cover;
+	}
+	
+	.mart-18 {
+        margin-top: 130px;
+	}
+	
+	.mart-15 {
+        margin-top: 25px;
+	}
+	
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .background-login {
+        background-image: url(../bg-euy.png);
+        background-repeat: no-repeat;
+        height: 635px;
+        background-size: cover;
+	}
+	
+    .mart-18 {
+        margin-top: 130px;
+    }
+
+    .mobile-style {
+        margin-right: 90px;
+        margin-bottom: 30px;
+    }
+}

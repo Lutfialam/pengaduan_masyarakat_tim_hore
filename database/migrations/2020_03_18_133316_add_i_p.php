@@ -15,6 +15,7 @@ class AddIP extends Migration
     {
         Schema::table('masyarakat', function (Blueprint $table) {
             $table->string('Ip');
+            $table->integer('user_id');
         });
     }
 

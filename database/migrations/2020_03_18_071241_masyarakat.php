@@ -14,12 +14,11 @@ class Masyarakat extends Migration
     public function up()
     {
         Schema::create('masyarakat', function (Blueprint $table) {
-            $table->bigIncrements('users_id');
+            $table->bigIncrements('id');
             $table->char('NIK', 16);
             $table->string('name');
             $table->string('alamat', 255);
             $table->string('telp');
-            $table->string('Ip');
         });
     }
 
@@ -30,6 +29,6 @@ class Masyarakat extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('masyarakat');
     }
 }

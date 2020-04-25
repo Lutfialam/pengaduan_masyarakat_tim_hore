@@ -15,7 +15,6 @@ class Pengaduan extends Migration
     {
         Schema::create('pengaduan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('NIK', 16);
             $table->text('isi_pengaduan');
             $table->string('gambar');
             $table->enum('status', ['belum', 'proses', 'selesai'])->default('belum');
@@ -30,6 +29,6 @@ class Pengaduan extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pengaduan');
     }
 }

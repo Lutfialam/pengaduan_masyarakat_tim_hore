@@ -1,23 +1,19 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+@extends('dashboard_layout.Home')
+    @section('content-header')
+        <h3>Welcome</h3>
+    @endsection
+    @section('content')
+          
+        <div class="row">
+            <div class="col-md-6">
+                <img src=" {{ asset('assets/img/undraw_note_list_etto.svg') }} " width="400">
             </div>
+            <div class="col-md-6">
+                <h1>Welcome!</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime eius cupiditate nulla voluptatibus, a eveniet in animi earum illum ad. Alias reprehenderit, cupiditate animi voluptates veniam dolorum odio sunt inventore?</p>
+                <p>buat aduan mu sekarang!</p>
+                <a href=" {{ route('pengaduan.create') }} " class="btn btn-primary">Buat aduan</a>
+            </div> 
         </div>
-    </div>
-</div>
-@endsection
+
+    @endsection('content')

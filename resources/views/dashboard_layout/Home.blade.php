@@ -1,10 +1,18 @@
-@include('dashboard_layout.Header')
+@include('dashboard_layout.header')
+    @include('dashboard_layout.navbar')
+        @include('dashboard_layout.sidebar')
 
-    @include('dashboard_layout.Navbar')
-    @include('dashboard_layout.Sidebar')
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        @yield('content-header')
+                    </div>
 
-        @yield('content')
-
-    @include('dashboard_layout.Footer-page')
+                    <div class="section-body">
+                        @yield('content')
+                    </div>
+                </section>
+            </div>
     
-@include('dashboard_layout.Footer')
+@include('dashboard_layout.footer')

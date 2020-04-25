@@ -13,14 +13,14 @@ class Petugas extends Migration
      */
     public function up()
     {
-        Schema::create('petugas', function (Blueprint $table) {
+        Schema::create('Petugas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_petugas');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telp');
-            $table->enum('level', ['admin', 'petugas'])->default('petugas');;
+            $table->enum('level', ['admin', 'petugas']);
             $table->timestamps();
         });
     }

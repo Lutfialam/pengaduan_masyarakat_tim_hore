@@ -6,6 +6,13 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+     broadcaster: 'pusher',
+     key: 'decef30474b42eef3038'
+});
+
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');

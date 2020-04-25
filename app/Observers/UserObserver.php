@@ -13,14 +13,13 @@ class UserObserver
      * @param  \App\User  $user
      * @return void
      */
-    public function created(User $user)
+    public function created(Masyarakat $masyarakat)
     {
-        (new Verification)->user()->associate($user);
-        $masyarakat = new Masyarakat;
-        $masyarakat->save();
-        $user->masyarakat()->attach([
-            $masyarakat->id
-        ]);
+        $author = $masyarakat->name;
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->notify(new NewItem($masyarakat,$author));
+        }
     }
 
     /**

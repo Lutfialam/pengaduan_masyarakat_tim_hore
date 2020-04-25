@@ -9,11 +9,11 @@ class Masyarakat extends Model
     public $timestamps = false;
     protected $table = 'masyarakat';
     protected $fillable = [
-        'name', 'users_id', 'NIK', 'telp', 'alamat'
+        'name', 'user_id', 'NIK', 'telp', 'alamat', 'ip'
     ];
 
     public function user()
     {
-        return $this->belongsToMany('App\User', 'NIK');
+        return $this->belongsTo('App\User', 'users_id');
     }
 }

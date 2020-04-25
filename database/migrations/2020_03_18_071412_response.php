@@ -13,9 +13,9 @@ class Response extends Migration
      */
     public function up()
     {
-        Schema::create('response', function (Blueprint $table) {
-            $table->integer('tanggapan_id', false, false);
-            $table->integer('pengaduan_id', false, false);
+        Schema::create('responses', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('pengaduan_id');
             $table->text('tanggapan');
             $table->integer('petugas_id');
             $table->timestamps();
@@ -29,6 +29,6 @@ class Response extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('response');
     }
 }
