@@ -31,9 +31,6 @@
                                     @csrf 
                                     @method('delete')
                                     <div class="col-md-6">
-                                        <a href=" {{ route('petugas.update', $petu->id) }} " class="btn btn-warning">Edit</a>
-                                    </div>
-                                    <div class="col-md-6">
                                         <button type="submit" class="btn btn-danger buttons">delete</button>
                                     </div>
                                 </form>
