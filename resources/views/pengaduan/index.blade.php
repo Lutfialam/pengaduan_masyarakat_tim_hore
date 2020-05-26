@@ -4,7 +4,17 @@
     @endsection
 
     @section('content')
-    
+    @if(Session::has('success'))
+        <script>
+            $('.success', function() {
+                swal('', " {{ Session('success') }} ", 'success', {
+                    buttons: false,
+                    timer: 3000,
+                });
+            });
+        </script>
+        <div class="success"></div>
+    @endif
     
         <div class="row">
             <div class="section-title">Pengaduan terbaru</div>

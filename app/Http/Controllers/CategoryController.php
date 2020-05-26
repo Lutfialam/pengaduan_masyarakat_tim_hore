@@ -46,7 +46,7 @@ class CategoryController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', 'category berhasil di tambahkan');
     }
 
     /**

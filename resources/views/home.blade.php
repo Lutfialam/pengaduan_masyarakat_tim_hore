@@ -3,6 +3,18 @@
         <h3>Welcome</h3>
     @endsection
     @section('content')
+
+    @if(Session::has('success'))
+        <script>
+            $('.success', function() {
+                swal('', " {{ Session('success') }} ", 'success', {
+                    buttons: false,
+                    timer: 3000,
+                });
+            });
+        </script>
+        <div class="success"></div>
+    @endif
           
         <div class="row">
             <div class="col-md-6">
@@ -15,5 +27,6 @@
                 <a href=" {{ route('pengaduan.create') }} " class="btn btn-primary">Buat aduan</a>
             </div> 
         </div>
+        
 
     @endsection('content')

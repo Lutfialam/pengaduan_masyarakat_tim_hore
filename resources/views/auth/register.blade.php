@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control @error('Alamat') is-invalid @enderror" name="Alamat" value="{{ old('Alamat') }}" placeholder="Masukkan Alamat Lengkap">
+                    <input type="text" class="form-control @error('Alamat') is-invalid @enderror" name="alamat" value="{{ old('Alamat') }}" placeholder="Masukkan Alamat Lengkap">
 
                     @error('Alamat')
                         <span class="invalid-feedback" role="alert">

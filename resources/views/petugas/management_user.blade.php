@@ -3,10 +3,22 @@
         <h3>Daftar user</h3>
     @endsection
     @section('content')
+
+    @if(Session::has('done'))
+        <script>
+            $('.success', function() {
+                swal('', " {{ Session('success') }} ", 'success', {
+                    buttons: false,
+                    timer: 2000,
+                });
+            });
+        </script>
+        <div class="success"></div>
+    @endif
     
         <div class="row">
             <div class="section-title">Petugas</div>
-            <table class="table table-hover">
+            <table class="table table-hover" id="table-1">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -25,13 +37,18 @@
                         <td> {{ $petu->email }} </td>
                         <td> {{ $petu->telp }} </td>
                         <td> {{ $petu->level }} </td>
-                        <td>
-                            <div class="row">
+                        <td width="20%">
+                            <div class="col-md-12">
                                 <form action=" {{ route('petugas.destroy', $petu->id) }} " method="post">
                                     @csrf 
                                     @method('delete')
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-danger buttons">delete</button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href=" {{ route('petugas.edit', $petu->id) }} " class="btn btn-warning"> edit </a>
+                                        </div> 
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-danger buttons">delete</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -42,7 +59,7 @@
             </table>
             <div class="row mt-2">
                 <div class="col-md-10">
-                {{ $petugas->links() }}
+                    {{ $petugas->links() }}
                 </div>
                 <div class="col-md-2">
                     <a href=" {{ route('petugas.create') }}  " class="btn btn-primary">Tambah Data</a>
@@ -50,11 +67,10 @@
             </div>
 
         </div>
-          
-
-        <div class="row">
+        
+        <div class="row mt-3">
             <div class="section-title">Masyarakat</div>
-            <table class="table table-hover">
+            <table class="table table-hover" id="table-2">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -73,14 +89,11 @@
                         <td> {{ $msy->NIK }} </td>
                         <td> {{ $msy->telp }} </td>
                         <td> {{ $msy->alamat }} </td>
-                        <td>
+                        <td width="20%">
                             <div class="row">
                                 <form action=" {{ route('masyarakat.destroy', $msy->id) }} " method="post">
                                     @csrf 
                                     @method('delete')
-                                    <div class="col-md-6">
-                                        <a href=" {{ route('masyarakat.update', $msy->id) }} " class="btn btn-warning">Edit</a>
-                                    </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-danger buttons">delete</button>
                                     </div>

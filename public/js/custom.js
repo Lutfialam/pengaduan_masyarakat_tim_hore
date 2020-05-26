@@ -6,3 +6,21 @@
  */
 
 "use strict";
+
+$('.success', function() {
+    swal('This modal will disappear soon!', {
+        buttons: false,
+        timer: 3000,
+    });
+});
+
+$("#table-1").dataTable({
+    "columnDefs": [
+        { "sortable": false, "targets": [2,3] }
+    ]
+});
+$("#table-2").dataTable({
+    "columnDefs": [
+        { "sortable": false, "targets": [0,2,3] }
+    ]
+});

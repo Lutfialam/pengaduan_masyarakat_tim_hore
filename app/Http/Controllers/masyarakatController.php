@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Masyarakat;
+use Auth;
 use App\User;
+use App\Masyarakat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class masyarakatController extends Controller
 {
@@ -60,7 +63,7 @@ class masyarakatController extends Controller
             'ip' => \Request::ip(),
         ]);
 
-        return $user;
+        return redirect()->route('petugas.management_user')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -82,7 +85,11 @@ class masyarakatController extends Controller
      */
     public function edit($id)
     {
-        //
+        if ( $id != Auth::id() ) {
+            return redirect()->route('user.index');
+        }
+        $masyarakat = Masyarakat::where('user_id', $id)->with('user')->get();
+        return view('user.edit', compact('masyarakat'));
     }
 
     /**
@@ -94,7 +101,23 @@ class masyarakatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $masyarakat = Masyarakat::find('user_id', $id);
+        $user = User::find($id);
+
+        $user->name = $request->name;
+        if($user->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $masyarakat->NIK = $request->NIK;
+        $masyarakat->name = $request->name;
+        $masyarakat->alamat = $request->alamat;
+        $masyarakat->telp = $request->telp;
+
+        $user->save();
+        $masyarakat->save();
+
+        return redirect()->route('user.index')->with('success', 'data berhasil di edit');
     }
 
     /**
@@ -105,8 +128,10 @@ class masyarakatController extends Controller
      */
     public function destroy($id)
     {
-        User::get()->where('id', $id)->delete();
-        Masyarakat::get()->where('id', $id)->delete();
+        $user = User::findorfail($id);
+        $masyarakat = Masyarakat::where('user_id', $user->id);
+        $masyarakat->delete();
+        $user->delete();
 
         return redirect()->back()->with('success', 'user berhasil dihapus');
     }

@@ -3,7 +3,18 @@
         <h3>My Account</h3>
     @endsection
     @section('content')
-          
+    @section('content')
+    @if(Session::has('success'))
+        <script>
+            $('.success', function() {
+                swal('', " {{ Session('success') }} ", 'success', {
+                    buttons: false,
+                    timer: 3000,
+                });
+            });
+        </script>
+        <div class="success"></div>
+    @endif
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -26,6 +37,9 @@
                                     </div>
                                     <div class="col-md-12">
                                         <span class="badge badge-primary"> {{ Auth::user()->level }} </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <a href="{{ route('masyarakat.edit', Auth::user()->id) }}" class="btn btn-primary"> Edit akun saya </a>
                                     </div>
                                 </div>
                             </div>

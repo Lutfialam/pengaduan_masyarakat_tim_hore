@@ -110,8 +110,10 @@ class PengaduanController extends Controller
         $pengaduan->judul = $request->judul;
         $pengaduan->isi_pengaduan = $request->isi_pengaduan;
         $pengaduan->user_id = Auth::id();
-        $pengaduan->category_id = $request->category_id;
-
+        
+        if ($request->has('category_id')) {
+            $pengaduan->category_id = $request->category_id;
+        }
         if ($request->has('gambar')) {
             $user = DB::table('users')->where('id', Auth::id())->first();
 
@@ -126,7 +128,7 @@ class PengaduanController extends Controller
 
         $pengaduan->save();
 
-        return redirect()->route('pengaduan.index');
+        return redirect()->route('pengaduan.index')->with('success', 'pengaduan berhasil di edit');
     }
 
     /**

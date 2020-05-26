@@ -23,7 +23,13 @@
 	
 	.mart-15 {
         margin-top: 25px;
-	}
+    }
+    
+    body.mail__templates {
+        background-image: url(../dekstop_mail.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 	
 }
 
@@ -43,5 +49,11 @@
     .mobile-style {
         margin-right: 90px;
         margin-bottom: 30px;
+    }
+
+    body.mail__templates {
+        background-image: url(../mobile_mail.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 }

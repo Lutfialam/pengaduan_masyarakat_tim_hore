@@ -67,9 +67,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $user_id)
     {
-        //
+        $masyarakat = Masyarakat::find($id);
+        $user = User::find($user_id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->level = $request->level;
+        $user->password = Hash::make($request->password);
+
+        $masyarakat->name = $request->name;
+        $masyarakat->email = $request->email;
+        $masyarakat->level = $request->level;
+        $masyarakat->telp = $request->telp;
+        $masyarakat->password = Hash::make($request->password);
+
+        $masyarakat->save();
+        $user->save();
+
+        return redirect()->route('home')->with('done', 'data berhasil di edit');
     }
 
     /**

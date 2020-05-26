@@ -7,6 +7,7 @@ use App\User;
 use App\Masyarakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PetugasController extends Controller
 {
@@ -67,9 +68,9 @@ class PetugasController extends Controller
             'telp' => $request->telp,
             'level' => $request->level,
             'user_id' => $user->id
-            ]);
+        ]);
         
-        return redirect()->route('petugas.index')->with('success', 'Data berhasil ditambah');
+        return redirect()->route('petugas.management_user')->with('done', 'Data berhasil ditambah');
     }
 
     /**
@@ -91,7 +92,8 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $petugas = Petugas::where('id', $id)->get();
+        return view('petugas.edit', compact('petugas'));
     }
 
     /**
@@ -101,9 +103,26 @@ class PetugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id, $user_id)
     {
-        //
+        $petugas = Petugas::find($id);
+        $user = User::find($user_id);
+
+        $user->name = $request->nama_petugas;
+        $user->email = $request->email;
+        $user->level = $request->level;
+        $user->password = Hash::make($request->password);
+
+        $petugas->nama_petugas = $request->nama_petugas;
+        $petugas->email = $request->email;
+        $petugas->level = $request->level;
+        $petugas->telp = $request->telp;
+        $petugas->password = Hash::make($request->password);
+
+        $petugas->save();
+        $user->save();
+
+        return redirect()->route('petugas.management_user')->with('done', 'data berhasil di edit');
     }
 
     /**
@@ -114,8 +133,12 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        $petugas = Petugas::get()->where('id', $id)->first();
-        $user = User::get()->where('id', $petugas);
-        dd($user);
+
+        $user = User::findorfail($id);
+        $petugas = Petugas::where('user_id', $user->id);
+        $petugas->delete();
+        $user->delete();
+        
+        return redirect()->route('petugas.management_user')->with('done', 'data berhasil di hapus');
     }
 }
