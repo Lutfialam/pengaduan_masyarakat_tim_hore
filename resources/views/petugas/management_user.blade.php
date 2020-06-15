@@ -4,17 +4,17 @@
     @endsection
     @section('content')
 
-    @if(Session::has('done'))
-        <script>
-            $('.success', function() {
-                swal('', " {{ Session('success') }} ", 'success', {
-                    buttons: false,
-                    timer: 2000,
+        @if(Session::has('done'))
+            <script>
+                $('.success', function() {
+                    swal('', " {{ Session('success') }} ", 'success', {
+                        buttons: false,
+                        timer: 2000,
+                    });
                 });
-            });
-        </script>
-        <div class="success"></div>
-    @endif
+            </script>
+            <div class="success"></div>
+        @endif
     
         <div class="row">
             <div class="section-title">Petugas</div>

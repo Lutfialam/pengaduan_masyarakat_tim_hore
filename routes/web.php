@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome', compact('pengaduan'));
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('/pengaduan', 'PengaduanController');
     Route::resource('/petugas', 'PetugasController');
     Route::resource('/masyarakat', 'masyarakatController');
@@ -26,12 +26,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/response', 'ResponseController');
     
     Route::get('/home', 'HomeController@index')->name('home.index');
+    
     Route::get('/pengaduan/trashed', 'PengaduanController@trashed')->name('pengaduan.trashed');
-    Route::get('/pengaduan/restore/{id}', 'PengaduanController@restore')->name('pengaduan.restore');
-    Route::get('/petugas/management_user', 'PetugasController@management_user')->name('petugas.management_user');
-    Route::get('/detail-user/{id}', 'UserController@index')->name('detail-user.index');
+    Route::get('/user-management', 'PetugasController@management_user')->name('petugas.manage');
     Route::get('/pengaduan-detail/', 'PengaduanController@pengaduan_user')->name('pengaduan.pengaduan_user');
     Route::get('user/bot-service', 'UserController@bot_service')->name('user.bot_service');
+    Route::get('/detail-user/{id}', 'UserController@index')->name('detail-user.index');
+    Route::get('/pengaduan/restore/{id}', 'PengaduanController@restore')->name('pengaduan.restore');
     Route::get('/response-pengaduan/{id}', 'ResponseController@create')->name('response.create');
 
     
